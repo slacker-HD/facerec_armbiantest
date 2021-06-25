@@ -35,7 +35,7 @@ process_this_frame = True
 while True:
     # Grab a single frame of video
     ret, frame = video_capture.read()
-
+    
     # Convert the image from BGR color (which OpenCV uses) to RGB color (which face_recognition uses)
     rgb_frame = frame[:, :, ::-1]
 
@@ -60,6 +60,24 @@ while True:
 
     process_this_frame = not process_this_frame
     print(face_names)
+    # uncomment to see video, run very very slow on orange pi pc+
+    # # Label the results
+    # for (top, right, bottom, left), name in zip(face_locations, face_names):
+    #     if not name:
+    #         continue
+
+    #     # Draw a box around the face
+    #     cv2.rectangle(frame, (left, top), (right, bottom), (0, 0, 255), 2)
+
+    #     # Draw a label with a name below the face
+    #     cv2.rectangle(frame, (left, bottom - 25), (right, bottom), (0, 0, 255), cv2.FILLED)
+    #     font = cv2.FONT_HERSHEY_DUPLEX
+    #     cv2.putText(frame, name, (left + 6, bottom - 6), font, 0.5, (255, 255, 255), 1)
+
+    # cv2.imshow("capture", frame)
+
+    # if cv2.waitKey(100) & 0xFF == ord('q'):
+    #     break
 
 # Release handle to the webcam
 video_capture.release()
